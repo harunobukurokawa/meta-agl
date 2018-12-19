@@ -26,7 +26,8 @@ LICENSE_FLAGS_WHITELIST = "commercial"
 
 MACHINE_FEATURES_append = " multimedia"
 
-DISTRO_FEATURES_append = " use_eva_pkg"
+# for demo & v3.15
+#DISTRO_FEATURES_append = " use_eva_pkg"
 
 #DISTRO_FEATURES_append = " h265dec_lib mpeg2dec_lib"
 DISTRO_FEATURES_append = " h264dec_lib h264enc_lib aaclcdec_lib aaclcdec_mdw"
