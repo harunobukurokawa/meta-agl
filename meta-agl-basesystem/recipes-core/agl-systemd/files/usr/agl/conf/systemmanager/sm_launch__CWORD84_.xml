@@ -1,0 +1,116 @@
+<!-- group_id=1 -->
+<group name="CoreModules" wait_time="0" trigger="False" >
+  <launch 
+    name=MN_NS_NPPSERVICE path="/usr/agl/bin/NS_NPPService" priority=PR_NS_NPPSERVICE_S
+    critical="True" retry_cnt="0" arguments="-a SS_SysManager -r output=0x2"
+    restart="NULL" is_start_required="False"
+    shutdown_critical="True" shutdown_wait_time="20" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+  <launch 
+    name=MN_NS_BACKUPMGR path="/usr/agl/bin/NS_BackupMgr" priority=PR_NS_BACKUPMGR_S
+    critical="True" retry_cnt="0" arguments="-l console"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="True" shutdown_wait_time="15" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+</group>
+<!-- group_id=2 -->
+<group name="SS_Logger" wait_time="0" trigger="False" >
+  <launch 
+    name=MN_SS_LOGGERSRV path="/usr/agl/bin/SS_LoggerService" priority=PR_SS_LOGGERSRV_S
+    critical="True" retry_cnt="0" arguments="-l console -p thrd=pdg.LogQueReader:30,thrd=pdg.TransmitQueReader:30,thrd=pdg.DumpQueReader:11,thrd=pdg.PerformanceQueReader:11,thrd=pdg.LogQueWriter:30,thrd=pdg.TransmitQueWriter:30,thrd=pdg.EvntLogQue:8,thrd=pdg.UdpQueWriter:10"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="True" shutdown_wait_time="10" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+</group>
+<!-- group_id=3 -->
+<group name="ShadowModules" wait_time="0" trigger="False" >
+  <!--
+   In order to excute the termination process promptly, the shutdown_wait_time of GROUP4~ sha be a;; set tp 0,
+   and FrameworkunifiedOnStop shall be issued to the servies of GROUP~ at almost the same time upon termination.
+   Setting shutdown_wait_time in the COMMUNICATION of GROUP3 makes GROUP3 wait for GROUP4~ to terminate service (wait for FrameworkunifiedOnStop responses) all at once.
+   The reason for batch wait by GROUP3 is to save the LOG of tge ternubatuib processing at the time of ACC-OFF of services
+   because the LOG save processing is performed by the GROUP2 termination processing of SS_LoggerService.
+  -->
+  <launch 
+    name=MN_COMMUNICATION path="/usr/agl/bin/communication" priority=PR_COMMUNICATION_S
+    critical="True" retry_cnt="0" arguments="-l console"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="False" shutdown_wait_time="20" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+</group>
+
+<!-- group_id=4 -->
+<group name="VehicleModules" wait_time="0" trigger="False" >
+  <launch
+    name=MN_POSITIONING path="/usr/agl/bin/Positioning" priority=PR_POSITIONING_S
+    critical="True" retry_cnt="0" arguments="NULL"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="False" shutdown_wait_time="0" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+</group>
+
+<!-- group_id=5 -->
+<group name="SystemModules" wait_time="0" trigger="False" >
+  <launch 
+    name=MN_SS_POWERSERVICE path="/usr/agl/bin/SS_PowerService" priority=PR_SS_POWERSERVICE_S
+    critical="True" retry_cnt="0" arguments="-l console"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="False" shutdown_wait_time="0" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+  <launch 
+    name=MN_SS_TASKMANAGER path="/usr/agl/bin/tskmgr" priority=PR_SS_TASKMANAGER_S
+    critical="True" retry_cnt="0" arguments="-l console"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="True" shutdown_wait_time="0" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+  <launch 
+    name=MN_SS_RESOURCEMGR path="/usr/agl/bin/resm" priority=PR_SS_RESOURCEMGR_S
+    critical="True" retry_cnt="0" arguments="-l console"
+    restart="NULL" is_start_required="True"
+    shutdown_critical="False" shutdown_wait_time="0" fast_shutdown_wait_time="1000"
+    user_name=""
+  />
+</group>
+<!-- group_id=6 -->
+<!-- group_id=7 -->
+<!-- group_id=8 -->
+<!-- group_id=9 -->
+<!-- group_id=10 -->
+<!-- group_id=11 -->
+<!-- group_id=12 -->
+<!-- group_id=13 -->
+<!-- group_id=14 -->
+<!-- group_id=15 -->
+<!-- group_id=16 -->
+<!-- group_id=17 -->
+<!-- group_id=18 -->
+<!-- group_id=19 -->
+<!-- group_id=20 -->
+<!-- group_id=21 -->
+<!-- group_id=22 -->
+<!-- group_id=23 -->
+<!-- group_id=24 -->
+<!-- group_id=25 -->
+<!-- group_id=26 -->
+<!-- group_id=28 -->
+<!-- group_id=29 -->
+<!-- group_id=30 -->
+<!-- group_id=31 -->
+<!-- group_id=32 -->
+<!-- group_id=33 -->
+<!-- group_id=34 -->
+<!-- group_id=35 -->
+<!-- group_id=36 -->
+<!-- group_id=37 -->
+<!-- group_id=38 -->
+<!-- group_id=39 -->
+<!-- group_id=40 -->
+<!-- group_id=41 -->
+<!-- group_id=42 -->
