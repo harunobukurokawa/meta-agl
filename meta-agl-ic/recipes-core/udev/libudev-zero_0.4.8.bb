@@ -1,6 +1,6 @@
 SUMMARY = "Daemonless replacement for libudev"
 HOMEPAGE = "https://github.com/illiliti/libudev-zero"
-LICENSE = "ISC License"
+LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=69c8aad36ed352f4a792582e756ae5c6"
 
 DEPENDS = ""
