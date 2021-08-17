@@ -1,2 +1,2 @@
 [Manager]
-#DefaultEnvironment =
+DefaultEnvironment = DLM_RUNTIME_PATH=/var/display/drm-lease-manager
