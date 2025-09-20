@@ -1,6 +1,6 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-COMPATIBLE_MACHINE = "(salvator-x|m3ulcb|h3ulcb|ebisu)"
+COMPATIBLE_MACHINE = "sparrow-hawk"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
