@@ -9,6 +9,37 @@ IMAGE_INSTALL:append = " \
     kernel-devicetree \
 "
 
+## tentative
+# Basic packages
+IMAGE_INSTALL:append = " \
+    v4l-utils \
+    i2c-tools \
+    coreutils \
+    kernel-devicetree \
+    alsa-utils \
+    v4l-utils \
+    yavta \
+    nvme-cli \
+    can-utils \
+    expand-rootfs \
+    pciutils \
+    usbutils \
+    kernel-modules \
+    u-boot \
+    libgpiod \
+    python3-pip \
+    python3-gpiod \
+"
+
+#    libcamera
+#    libcamera-pycamera
+
+# Sparrow-hawk specific packages
+IMAGE_INSTALL:append:sparrow-hawk = " \
+    linux-fitimage \
+    sparrow-hawk-fw \
+"
+
 
 # Enable Gfx Pkgs
 MACHINE_FEATURES:append = " gsx"
