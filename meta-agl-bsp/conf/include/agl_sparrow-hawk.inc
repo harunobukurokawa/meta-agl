@@ -6,6 +6,13 @@ MACHINE_EXTRA_RRECOMMENDS:append:rcar-gen4 = " \
 # Enable Gfx Pkgs
 MACHINE_FEATURES:append:rcar-gen4 = " gsx"
 
+# The camera pipeline on this board is driven through libcamera's
+# rcar-gen4 pipeline handler. Advertise that so recipes elsewhere (e.g.
+# meta-agl-demo's camera-gstreamer) can opt in via
+# bb.utils.contains('MACHINE_FEATURES', 'libcamera', ...) instead of
+# hardcoding this board's name.
+MACHINE_FEATURES:append:rcar-gen4 = " libcamera"
+
 # Enable Wayland/Weston
 DISTRO_FEATURES_NATIVESDK:append:rcar-gen4 = " wayland"
 BB_MULTI_PROVIDER_ALLOWED:append:rcar-gen4 = " virtual/libgl virtual/egl virtual/libgles1 virtual/libgles2"
