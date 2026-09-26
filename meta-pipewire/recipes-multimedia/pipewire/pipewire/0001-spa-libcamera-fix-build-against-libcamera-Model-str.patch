@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Harunobu Kurokawa <harunobu.kurokawa.dn@renesas.com>
+Date: Fri, 26 Sep 2026 20:00:00 +0900
+Subject: [PATCH] spa/libcamera: fix build against libcamera's Model
+ string_view control
+
+libcamera's properties::Model control is declared as
+Control<std::string_view> (see property_ids.h), not Control<std::string>.
+std::string's constructor from std::string_view is explicit in C++17, so
+returning std::move(model.value()) from a function that returns
+std::string fails to compile:
+
+  error: could not convert '...' from 'std::basic_string_view<char>' to
+  'std::string'
+
+Use an explicit std::string conversion instead. This plugin isn't
+normally built (PACKAGECONFIG[libcamera] is opt-in), so this gap wasn't
+caught upstream; needed here now that AGL enables it for boards that
+advertise MACHINE_FEATURES += " libcamera".
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ spa/plugins/libcamera/libcamera-device.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/spa/plugins/libcamera/libcamera-device.cpp b/spa/plugins/libcamera/libcamera-device.cpp
+index 210351c75..9042c0a57 100644
+--- a/spa/plugins/libcamera/libcamera-device.cpp
++++ b/spa/plugins/libcamera/libcamera-device.cpp
+@@ -74,7 +74,7 @@ static std::string cameraModel(const Camera *camera)
+ 	const ControlList &props = camera->properties();
+
+ 	if (auto model = props.get(properties::Model))
+-		return std::move(model.value());
++		return std::string(model.value());
+
+ 	return camera->id();
+ }
+--
+2.34.1
